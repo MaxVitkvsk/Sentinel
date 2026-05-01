@@ -1,0 +1,50 @@
+management:
+  metrics:
+    enable:
+      spring.data.redis: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus, health, info
+  endpoint:
+    health:
+      show-details: always
+    prometheus:
+      enabled: true
+
+spring:
+  application:
+    name: kafka-redis-postgre
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5444/sentinel_db
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+
+  kafka:
+    bootstrap-servers: localhost:9092,localhost:9094,localhost:9096
+    consumer:
+      group-id: sentinel-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+coingecko:
+  api:
+    key: ${CG_API_KEY:CG-rZMFro4tTbTVeshBTX4jbPpr}
