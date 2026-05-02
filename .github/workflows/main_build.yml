@@ -10,11 +10,6 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-    services:
-    # Мы не поднимаем Postgres здесь как сервис GitHub,
-    # так как используем Testcontainers прямо в коде.
-    # GitHub Actions по умолчанию имеет запущенный Docker-демон.
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
