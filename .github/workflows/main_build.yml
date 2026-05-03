@@ -44,6 +44,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Prepare Docker metadata
+        id: prep
+        run: |
+          REPO_LOWER="${GITHUB_REPOSITORY,,}"
+          echo "REPO=${REPO_LOWER}" >> $GITHUB_ENV
+          echo "IMAGE_TAG=ghcr.io/${REPO_LOWER}" >> $GITHUB_ENV
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
