@@ -1,7 +1,9 @@
-spring:
-  task:
-    scheduling:
-      enabled: false
+app:
+  scheduling:
+    enabled: false
+  kafka:
+    partitions: 3
+    replicas: 3
 
 coingecko:
   api:

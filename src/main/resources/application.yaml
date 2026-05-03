@@ -49,3 +49,8 @@ coingecko:
   api:
     url: https://api.coingecko.com/api/v3
     key: ${CG_API_KEY:CG-rZMFro4tTbTVeshBTX4jbPpr}
+
+app:
+  kafka:
+    partitions: 3
+    replicas: 3
