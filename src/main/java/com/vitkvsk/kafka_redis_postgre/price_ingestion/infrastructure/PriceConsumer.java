@@ -4,15 +4,11 @@ package com.vitkvsk.kafka_redis_postgre.price_ingestion.infrastructure;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.infrastructure.CoinPriceEvent;
 import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceIngestionService;
 import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceQueryService;
-import io.vavr.control.Option;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.TimeUnit;
 
 @Component
 @Slf4j
