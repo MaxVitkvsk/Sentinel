@@ -1,0 +1,13 @@
+spring:
+  task:
+    scheduling:
+      enabled: false
+
+coingecko:
+  api:
+    url: http://localhost:${wiremock.server.port}
+    key: test-key
+
+wiremock:
+  server:
+    port: 8080

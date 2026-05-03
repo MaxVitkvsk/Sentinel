@@ -20,7 +20,7 @@ public class PriceInformer {
     public void fetchAndSend() {
         String extId = "bitcoin";
         String symbol = "BTC";
-        externalClassClient.fetchPrice("bitcoin")
+        externalClassClient.fetchPrice("bitcoin", "Bitcoin", "btc")
                 .map(price -> new CoinPriceEvent(symbol, price))
                 .peek(event -> {
 

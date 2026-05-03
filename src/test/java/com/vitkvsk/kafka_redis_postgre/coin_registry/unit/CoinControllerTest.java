@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-@WebMvcTest(CoinController.class) // Поднимаем только веб-слой для этого контроллера
+@WebMvcTest(CoinController.class)
 class CoinControllerTest {
 
     @Autowired
@@ -30,7 +30,7 @@ class CoinControllerTest {
     private CacheManager cacheManager;
 
     @MockitoBean
-    private CoinService coinService; // Создаем Stub сервиса
+    private CoinService coinService;
 
     @Test
     void shouldReturnCreated_WhenRegistrationIsSuccessful() throws Exception {
@@ -48,7 +48,6 @@ class CoinControllerTest {
                 .andExpect(status().isCreated()) // Проверяем HTTP статус 201
                 .andExpect(jsonPath("$.symbol").value("BTC"))
                 .andExpect(jsonPath("$.name").value("Bitcoin"));
-
     }
 
     @Test
