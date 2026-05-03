@@ -1,7 +1,6 @@
 package com.vitkvsk.kafka_redis_postgre.price_ingestion;
 
 import com.vitkvsk.kafka_redis_postgre.coin_registry.Coin;
-import com.vitkvsk.kafka_redis_postgre.coin_registry.CoinRepository;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,6 @@ public class PriceIngestionService {
     public Option<BigDecimal> getCurrentPrice(String symbol) {
         return Option.of(priceQueryService.getCachedAmount(symbol.toUpperCase()))
                 .map(BigDecimal::new)
-                // 2. Если в кэше пусто, идем в БД через существующую логику
                 .orElse(() -> findCoinId(symbol.toUpperCase())
                         .map(priceHistoryRepository::findFirstByCoinIdOrderByObservedAtDesc)
                         .map(PriceHistory::getAmount)

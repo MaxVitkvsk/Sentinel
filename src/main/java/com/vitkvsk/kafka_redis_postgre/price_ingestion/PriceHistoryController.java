@@ -1,7 +1,6 @@
 package com.vitkvsk.kafka_redis_postgre.price_ingestion;
 
 import com.vitkvsk.kafka_redis_postgre.coin_registry.Coin;
-import com.vitkvsk.kafka_redis_postgre.coin_registry.CoinRepository;
 import io.vavr.control.Option;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

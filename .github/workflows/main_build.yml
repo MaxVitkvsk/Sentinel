@@ -74,5 +74,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/sentinel:latest
-            ghcr.io/${{ github.repository_owner }}/sentinel:${{ github.sha }}
+            ${{ env.IMAGE_TAG }}:latest
+            ${{ env.IMAGE_TAG }}:${{ github.sha }}

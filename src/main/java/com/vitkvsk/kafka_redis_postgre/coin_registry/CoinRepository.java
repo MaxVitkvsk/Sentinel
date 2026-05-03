@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface CoinRepository extends JpaRepository<Coin, UUID> {
+public interface CoinRepository extends JpaRepository<Coin, UUID>   {
 
     Optional<Coin> findBySymbol(String symbol);
 
