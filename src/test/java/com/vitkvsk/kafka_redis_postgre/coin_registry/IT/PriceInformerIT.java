@@ -1,11 +1,12 @@
 package com.vitkvsk.kafka_redis_postgre.coin_registry.IT;
 
 
-import com.vitkvsk.kafka_redis_postgre.AbstractKafkaTest;
+import com.vitkvsk.kafka_redis_postgre.AbstractIntegrationTest;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.infrastructure.CoinPriceEvent;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.infrastructure.ExternalClassClient;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.infrastructure.PriceInformer;
 import io.vavr.control.Either;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 @SpringBootTest
 @ActiveProfiles("test")
 @Testcontainers
-public class PriceInformerIT extends AbstractKafkaTest {
+public class PriceInformerIT extends AbstractIntegrationTest {
 
     @MockitoBean
     private ExternalClassClient client;
@@ -42,6 +43,11 @@ public class PriceInformerIT extends AbstractKafkaTest {
     private PriceInformer priceInformer;
 
     private final List<CoinPriceEvent> consumedEvents = new CopyOnWriteArrayList<>();
+
+    @BeforeEach
+    void setUp() {
+        consumedEvents.clear(); // Гарантируем чистоту перед каждым методом
+    }
 
     @KafkaListener(topics = "coin-prices", groupId = "test-group")
     void listen(CoinPriceEvent event) {

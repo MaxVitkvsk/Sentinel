@@ -1,6 +1,8 @@
 package com.vitkvsk.kafka_redis_postgre.coin_registry.IT;
 
 import static org.assertj.core.api.Assertions.*;
+
+import com.vitkvsk.kafka_redis_postgre.AbstractIntegrationTest;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.Coin;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.CoinRepository;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.CoinService;
@@ -18,7 +20,7 @@ import org.testcontainers.postgresql.PostgreSQLContainer;
 @Tag("integration")
 @Testcontainers
 @SpringBootTest
-public class CoinServiceIT {
+public class CoinServiceIT extends AbstractIntegrationTest {
 
     @Autowired
     private CoinRepository coinRepository;
@@ -26,15 +28,6 @@ public class CoinServiceIT {
     @Autowired
     private CoinService coinService;
 
-    @Container
-    static PostgreSQLContainer postgres = new PostgreSQLContainer("postgres:16");
-
-    @DynamicPropertySource
-    static  void configureProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgres::getJdbcUrl);
-        registry.add("spring.datasource.username", postgres::getUsername);
-        registry.add("spring.datasource.password", postgres::getPassword);
-    }
 
     @Test
     void shouldReturnCoinAfterSave() {

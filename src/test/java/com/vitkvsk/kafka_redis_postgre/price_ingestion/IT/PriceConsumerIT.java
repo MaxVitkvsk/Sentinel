@@ -7,7 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 
-import com.vitkvsk.kafka_redis_postgre.AbstractKafkaTest;
+import com.vitkvsk.kafka_redis_postgre.AbstractIntegrationTest;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.infrastructure.CoinPriceEvent;
 import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceHistory;
 import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceIngestionService;
@@ -33,7 +33,7 @@ import java.util.UUID;
 @Tag("integration")
 @SpringBootTest
 @Testcontainers
-public class PriceConsumerIT extends AbstractKafkaTest {
+public class PriceConsumerIT extends AbstractIntegrationTest {
 
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;

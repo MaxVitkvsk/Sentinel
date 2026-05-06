@@ -7,9 +7,5 @@ app:
 
 coingecko:
   api:
-    url: http://localhost:${wiremock.server.port}
+    url: ${wiremock.base-url}
     key: test-key
-
-wiremock:
-  server:
-    port: 8080

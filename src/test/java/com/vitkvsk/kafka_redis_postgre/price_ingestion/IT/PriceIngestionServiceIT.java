@@ -2,6 +2,7 @@ package com.vitkvsk.kafka_redis_postgre.price_ingestion.IT;
 
 import static org.assertj.core.api.Assertions.*;
 
+import com.vitkvsk.kafka_redis_postgre.AbstractIntegrationTest;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.CoinService;
 import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceHistory;
 import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceIngestionService;
@@ -22,7 +23,7 @@ import java.math.BigDecimal;
 @Tag("integration")
 @Testcontainers
 @SpringBootTest
-public class PriceIngestionServiceIT {
+public class PriceIngestionServiceIT extends AbstractIntegrationTest {
 
     @Autowired
     private CoinService coinService;
@@ -30,15 +31,7 @@ public class PriceIngestionServiceIT {
     @Autowired
     private PriceIngestionService priceIngestionService;
 
-    @Container
-    static PostgreSQLContainer postgres = new PostgreSQLContainer("postgres:16");
 
-    @DynamicPropertySource
-    static  void configureProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgres::getJdbcUrl);
-        registry.add("spring.datasource.username", postgres::getUsername);
-        registry.add("spring.datasource.password", postgres::getPassword);
-    }
 
     @Test
     @DisplayName("Should return PriceHistory (Right) when coin exists and amount is valid")
