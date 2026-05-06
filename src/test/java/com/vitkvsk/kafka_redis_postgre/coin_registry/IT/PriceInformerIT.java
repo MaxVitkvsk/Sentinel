@@ -1,6 +1,7 @@
 package com.vitkvsk.kafka_redis_postgre.coin_registry.IT;
 
 
+import com.vitkvsk.kafka_redis_postgre.AbstractKafkaTest;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.infrastructure.CoinPriceEvent;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.infrastructure.ExternalClassClient;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.infrastructure.PriceInformer;
@@ -32,15 +33,7 @@ import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 @SpringBootTest
 @ActiveProfiles("test")
 @Testcontainers
-public class PriceInformerIT {
-
-    @Container
-    static KafkaContainer kafka = new KafkaContainer("apache/kafka-native:3.8.0");
-
-    @DynamicPropertySource
-    static void overrideProps(DynamicPropertyRegistry registry) {
-        registry.add("spring.kafka.bootstrap-servers", kafka::getBootstrapServers);
-    }
+public class PriceInformerIT extends AbstractKafkaTest {
 
     @MockitoBean
     private ExternalClassClient client;

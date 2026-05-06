@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 
+import com.vitkvsk.kafka_redis_postgre.AbstractKafkaTest;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.infrastructure.CoinPriceEvent;
 import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceHistory;
 import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceIngestionService;
@@ -32,15 +33,7 @@ import java.util.UUID;
 @Tag("integration")
 @SpringBootTest
 @Testcontainers
-public class PriceConsumerIT {
-
-    @Container
-    static KafkaContainer kafka = new KafkaContainer("apache/kafka-native:3.8.0");
-
-    @DynamicPropertySource
-    static void overrideProps(DynamicPropertyRegistry registry) {
-        registry.add("spring.kafka.bootstrap-servers", kafka::getBootstrapServers);
-    }
+public class PriceConsumerIT extends AbstractKafkaTest {
 
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
