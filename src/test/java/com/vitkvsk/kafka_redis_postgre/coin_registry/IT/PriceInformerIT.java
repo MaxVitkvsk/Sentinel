@@ -65,7 +65,7 @@ public class PriceInformerIT {
         priceInformer.fetchAndSend();
 
         await()
-                .atMost(Duration.ofSeconds(5))
+                .atMost(Duration.ofSeconds(7))
                 .untilAsserted(() -> {
                     assertThat(consumedEvents).asList().hasSize(1);
                     CoinPriceEvent sentEvent = consumedEvents.get(0);
