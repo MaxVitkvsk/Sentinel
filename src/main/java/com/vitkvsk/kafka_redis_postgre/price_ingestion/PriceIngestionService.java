@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -34,6 +35,13 @@ public class PriceIngestionService {
                         validateAmount(amount)
                                 .map(validateAmount ->
                                         saveToHistory(coinId, validateAmount)));
+    }
+
+    public Either<String, List<PriceHistory>> findPriceHistory(String symbol) {
+        return Option.ofOptional(coinRepository.findBySymbol(symbol.toUpperCase()))
+                .toEither("Coin not found: " + symbol)
+                .map(Coin::getId)
+                .map(priceHistoryRepository::findAllByCoinIdOrderByObservedAtDesc);
     }
 
     private Either<String, UUID> findCoinId(String symbol) {

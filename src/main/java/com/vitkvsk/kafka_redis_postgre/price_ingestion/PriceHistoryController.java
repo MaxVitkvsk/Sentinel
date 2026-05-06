@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class PriceHistoryController {
 
     private final PriceIngestionService priceIngestionService;
-    private final CoinRepository coinRepository;
-    private final PriceHistoryRepository priceHistoryRepository;
 
     @GetMapping("/current/{symbol}")
     public ResponseEntity<?> getCurrentPrice(@PathVariable String symbol) {
@@ -35,10 +33,7 @@ public class PriceHistoryController {
 
     @GetMapping("/history/{symbol}")
     public ResponseEntity<?> getHistory(@PathVariable String symbol) {
-        return Option.ofOptional(coinRepository.findBySymbol(symbol.toUpperCase()))
-                .toEither("Coin not found: " + symbol)
-                .map(Coin::getId)
-                .map(priceHistoryRepository::findAllByCoinIdOrderByObservedAtDesc)
+        return priceIngestionService.findPriceHistory(symbol)
                 .fold(
                         error -> ResponseEntity.status(404).body(error),
                         ResponseEntity::ok

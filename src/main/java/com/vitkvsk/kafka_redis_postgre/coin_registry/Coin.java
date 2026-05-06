@@ -27,7 +27,7 @@ public class Coin {
     @Column(name = "created_at", nullable = false, updatable = false)
     private OffsetDateTime createdAt;
 
-    @PrePersist
+    @PrePersist // вызывает перед тем как выполнить INSERT
     protected void onCreate() {
         this.createdAt = OffsetDateTime.now();
     }
