@@ -6,6 +6,7 @@ import com.redis.testcontainers.RedisContainer;
 import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceQueryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,7 @@ import org.testcontainers.utility.DockerImageName;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Tag("integration")
 @SpringBootTest
 @Testcontainers
 public class PriceQueryServiceIT {

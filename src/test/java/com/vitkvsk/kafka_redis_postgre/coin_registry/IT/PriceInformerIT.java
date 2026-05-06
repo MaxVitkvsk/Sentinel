@@ -5,6 +5,7 @@ import com.vitkvsk.kafka_redis_postgre.coin_registry.infrastructure.CoinPriceEve
 import com.vitkvsk.kafka_redis_postgre.coin_registry.infrastructure.ExternalClassClient;
 import com.vitkvsk.kafka_redis_postgre.coin_registry.infrastructure.PriceInformer;
 import io.vavr.control.Either;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +27,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
 import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 
+
+@Tag("integration")
 @SpringBootTest
 @ActiveProfiles("test")
 @Testcontainers

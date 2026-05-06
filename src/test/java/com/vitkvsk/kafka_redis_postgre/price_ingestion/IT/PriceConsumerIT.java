@@ -12,6 +12,7 @@ import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceHistory;
 import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceIngestionService;
 import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceQueryService;
 import io.vavr.control.Either;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,7 +29,7 @@ import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-
+@Tag("integration")
 @SpringBootTest
 @Testcontainers
 public class PriceConsumerIT {

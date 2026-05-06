@@ -7,6 +7,7 @@ import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceHistory;
 import com.vitkvsk.kafka_redis_postgre.price_ingestion.PriceIngestionService;
 import io.vavr.control.Either;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +19,7 @@ import org.testcontainers.postgresql.PostgreSQLContainer;
 
 import java.math.BigDecimal;
 
+@Tag("integration")
 @Testcontainers
 @SpringBootTest
 public class PriceIngestionServiceIT {
